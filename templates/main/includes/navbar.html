@@ -1,6 +1,6 @@
 <!--Navbar 1-->
 {% load static %}
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
         </ul>
@@ -17,7 +17,7 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="btn btn-danger" style="margin-right: 10px" href="/logout">Logout</a>
+                    <a class="btn btn-danger" style="margin-right: 10px" href="{% url 'member:logout' %}">Logout</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'exam:home' %}">Exams</a>
@@ -31,10 +31,10 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="btn btn-primary" style="margin-right: 10px" href="/login">Login</a>
+                    <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'member:login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary" style="margin-right: 5px" href="/register">Register</a>
+                    <a class="btn btn-primary" style="margin-right: 5px" href="{% url 'member:register_user' %}">Register</a>
                 </li>
             {% endif %}
         </ul>
@@ -68,3 +68,32 @@
         </div>
     </nav>
 </div>
+
+
+<!--Navbar That Needs To Be Integrated-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
