@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    {% for exam in exams %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ }}">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{% url 'user-posts' post.author.username %}"></a>
+                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                </div>
+                <h2><a class="article-title" href=""></a></h2>
+                <p class="article-content"></p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

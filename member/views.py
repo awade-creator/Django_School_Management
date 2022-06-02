@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import ListView
+
+from student.models import Student
 
 
 # Create your views here.
@@ -20,3 +23,12 @@ def register_user(request):
     else:
         form = UserCreationForm()
     return render(request, 'member/authentication/register_user.html', {'form': form})
+
+
+"""
+class StudentListView(ListView):
+    model = Exam
+    template_name = 'reports.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'exam'
+    paginate_by = 5
+"""

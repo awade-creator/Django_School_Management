@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+    <!--Exam form-->
+    <div class="container center">
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+                {{ student }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+{% endblock %}

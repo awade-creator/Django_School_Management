@@ -19,8 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("main.urls")),
-    path("exam/", include("exam.urls")),
     path("student/", include("student.urls")),
     path("member/", include("member.urls")),
     path("member/", include("django.contrib.auth.urls")),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]

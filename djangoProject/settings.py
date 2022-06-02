@@ -25,6 +25,12 @@ SECRET_KEY = 'django-insecure-kc-hj!%zb#z-g4f2iexz3)@3nzxj7kc2#a4di*av(02$_91hrj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -33,12 +39,13 @@ INSTALLED_APPS = [
     # My Applications
     "member.apps.MemberConfig",
     "main.apps.MainConfig",
-    "exam.apps.ExamConfig",
     "student.apps.StudentConfig",
 
     # Third-Party Applications
     "crispy_forms",
     'jazzmin',
+    'phone_field',
+    "debug_toolbar",
 
     # Django Core Applications
     'django.contrib.admin',
@@ -57,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'djangoProject.urls'
@@ -86,7 +94,7 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE"  : "django.db.backends.postgresql",
-        "NAME"    : "schl",
+        "NAME"    : "tkd_db",
         "USER"    : "wade",
         "PASSWORD": "alexwade",
         "HOST"    : "localhost",  # set in docker-compose.yml

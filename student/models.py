@@ -1,7 +1,9 @@
 from django.db import models
 
 # Choices used for model Student
+from django.db.models import ManyToManyField
 
+from member.models import Member
 
 RANK_CHOICES = [
     ('BLANK', 'N/A'),
@@ -68,6 +70,7 @@ SC_CHOICES = [
 
 # Create your models here.
 class Student(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     age = models.CharField(max_length=3)
@@ -76,4 +79,22 @@ class Student(models.Model):
     xp_program = models.CharField(max_length=100, choices=XP_CHOICES)
     sc_program = models.CharField(max_length=100, choices=SC_CHOICES)
     instructor = models.BooleanField()
-    updated = models.DateTimeField(auto_created=True)
+
+    def __str__(self):
+        return self.last_name + ', ' + self.first_name
+
+
+class Exam(models.Model):
+    exam = models.ForeignKey(Student, on_delete=models.CASCADE)
+    exam_title = models.CharField(max_length=20)
+    rank = models.CharField(max_length=50)
+    form_cadence = models.BooleanField(default=False)
+    contact = models.BooleanField(default=False)
+    one_step = models.BooleanField(default=False)
+    sparring = models.BooleanField(default=False)
+    ecas = models.BooleanField(default=False)
+    boards = models.BooleanField(default=False)
+    results = models.CharField(max_length=20, blank=True)
+    exam_author = models.CharField(max_length=50, blank=True)
+    notes = models.CharField(max_length=250, blank=True)
+    updated = models.DateTimeField(auto_now=True)

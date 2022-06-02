@@ -1,95 +1,46 @@
 <!--Navbar 1-->
 {% load static %}
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="navbar-nav mr-auto">
-        </ul>
-    </div>
-    <div class="mx-auto order-0">
-        <a class="navbar-brand m-0" href="/" style="font-size:30px">
-            <img src="{% static "img/logo.png" %}" width="35" height="35" alt="logo"> Flow Engage
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="btn btn-danger" style="margin-right: 10px" href="{% url 'member:logout' %}">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'exam:home' %}">Exams</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary" style="margin-right: 10px"
-                       href="{% url 'student:student_dashboard' %}">Student_Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary" href=" " title="Your Profile">{{ user.username|title }}</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="btn btn-primary" style="margin-right: 10px" href="{% url 'member:login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary" style="margin-right: 5px" href="{% url 'member:register_user' %}">Register</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
-
-<!--Navbar 2-->
-<div class="container-fluid sticky-top bg-dark">
-    <nav class="container navbar navbar-expand-md navbar-dark">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto">
-                {% for tag in nav_tags %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/blog/{{ tag.tag_slug }}">{{ tag.tag_name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/blog/articles">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=" ">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
-
 
 <!--Navbar That Needs To Be Integrated-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-badge bg-blue">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <img src="{% static "img/logo.png" %}" width="35" height="35" alt="logo">
+        <a class="navbar-brand" href="{% url 'main:home' %}">Flow Engage</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'student:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student:student_dashboard' %}">Student Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student:exam_report' %}">Exam Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'member:logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">{{ user.username|title }}</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'member:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'member:register_user' %}">Register</a>
+                    </li>
+                {% endif %}
             </ul>
+
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
