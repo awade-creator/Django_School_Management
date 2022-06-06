@@ -5,6 +5,25 @@ from django.db.models import ManyToManyField
 
 from member.models import Member
 
+EXAM_SELECTION = [
+    ('', ''),
+    ('HO-AM', 'HO-AM'),
+    ('Seed Form', 'Seed Form'),
+    ('Plant Form', 'Plant Form'),
+    ('Water Form', 'Water Form'),
+    ('Sun Form', 'Sun Form'),
+    ('Earth Form', 'Earth Form'),
+    ('Fire Form', 'Fire Form'),
+    ('Sky Form', 'Sky Form'),
+    ('Tiger Form', 'Tiger Form'),
+    ('Oak Form', 'Oak Form'),
+    ('Eagle Form', 'Eagle Form'),
+    ('Ocean Form', 'Ocean Form'),
+    ('River Form', 'River Form'),
+    ('Bear Form', 'Bear Form'),
+    ('Mountain Form', 'Mountain Form')
+]
+
 RANK_CHOICES = [
     ('BLANK', 'N/A'),
     ('CUB_WHITE', 'Cub_White'),
@@ -85,9 +104,8 @@ class Student(models.Model):
 
 
 class Exam(models.Model):
-    exam = models.ForeignKey(Student, on_delete=models.CASCADE)
-    exam_title = models.CharField(max_length=20)
-    rank = models.CharField(max_length=50)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    exam_title = models.CharField(max_length=20, choices=EXAM_SELECTION, blank=True)
     form_cadence = models.BooleanField(default=False)
     contact = models.BooleanField(default=False)
     one_step = models.BooleanField(default=False)
@@ -98,3 +116,6 @@ class Exam(models.Model):
     exam_author = models.CharField(max_length=50, blank=True)
     notes = models.CharField(max_length=250, blank=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return (self.exam_title)
