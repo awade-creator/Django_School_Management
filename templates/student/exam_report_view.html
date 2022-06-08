@@ -4,31 +4,33 @@
 {% block content %}
     <div class="container">
         <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4">All Books</h1>
+            <h1 class="display-4">Examination Results</h1>
             <p class="lead">A range of wonderful programming books to help you learn JavaScript.</p>
         </div>
 
         <div class="py-5">
             <div class="row">
-                {% for exam_results in student_exam %}
+
+                {% for exam_results in exam_results %}
+
                     <div class="col-md-4">
                         <a class="text-dark">
                             <div class="card mb-4 box-shadow">
-                                <div class="card-body">
+                                {% if exam.results == 'pass' %}
+                                    <div class="card-body" style="background-color:rgba(255,9,9,0.78)">
                                     <h3 class="card__header">
-                                        {{ exam_results.first_name }} {{ exam_results.last_name }}</h3>
+                                        {{ exam_results.first_name }} {{ exam_results.last_name }}
+                                        {{ exam_results.age }} {{ Exam.result }}</h3>
                                     <p class="card__info">
-                                        {% if exam.results == True %}
-                                            <small style="background-color:Blue"
-                                                   class="text-muted">{{ exam_results.results }}</small>
+                                        <small class="text-muted">{{ exam_results.results }}</small>
                                         {% else %}
-                                            <small style="background-color:Red"
-                                                   class="text-muted">{{ exam_results.results }}</small>
-                                        {% endif %}
-                                    </p>
+                                    <div class="card-body" style="background-color:Blue">
+                                {% endif %}
+
+                                </p>
                                 </div>
 
-                            </div>
+                                </div>
 
                         </a>
                     </div>
@@ -57,7 +59,6 @@
             </div>
         </div>
     </div>
-
 
 
 {% endblock %}

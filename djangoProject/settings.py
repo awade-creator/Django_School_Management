@@ -164,11 +164,11 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 JAZZMIN_SETTINGS = {
     "site_title"                 : "Flow Engage",
     "site_header"                : "your_site_header",
-    "site_brand"                 : "your_site_brand",
+    "site_brand"                 : "Flow Engage",
     "site_icon"                  : "images/favicon.png",
     # Add your own branding here
     "site_logo"                  : None,
-    "welcome_sign"               : "Welcome to the Flow Engage",
+    "welcome_sign"               : "Welcome, Engage In The Flow",
     # Copyright on the footer
     "copyright"                  : "Flow Engage",
     "user_avatar"                : None,
@@ -178,7 +178,7 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links"              : [
         # Url that gets reversed (Permissions can be added)
-        {"name": "your_site_name", "url": "home", "permissions": ["auth.view_user"]},
+        {"name": "Flow Engage", "url": "home", "permissions": ["auth.view_user"]},
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
     ],
@@ -205,7 +205,7 @@ JAZZMIN_SETTINGS = {
     # Related Modal #
     #################
     # Use modals instead of popups
-    "related_modal_active"       : False,
+    "related_modal_active"       : True,
     #############
     # UI Tweaks #
     #############

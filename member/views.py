@@ -23,12 +23,3 @@ def register_user(request):
     else:
         form = UserCreationForm()
     return render(request, 'member/authentication/register_user.html', {'form': form})
-
-
-"""
-class StudentListView(ListView):
-    model = Exam
-    template_name = 'reports.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'exam'
-    paginate_by = 5
-"""

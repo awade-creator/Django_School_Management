@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <!-- Iterate over object_list -->
+    {% for object in object_list %}
+        </br>
+        <table>
+            <tr>
+                <td>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ object.student.first_name }} {{ object.student.last_name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ object.exam_title }}</h6>
+
+                            <div>
+
+                                <label for="notes">Notes: </label>
+                                <p class="card-text">{{ object.notes }}</p>
+                            </div>
+                            <p class="card-text">{{ object.exam_author }}</p>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- If object_list is empty  -->
+        {% empty %}
+        <li>No objects yet.</li>
+    {% endfor %}
+
+{% endblock %}

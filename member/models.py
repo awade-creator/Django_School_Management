@@ -24,7 +24,7 @@ class Member(models.Model):
     guardian = models.BooleanField(default=False)
     notes = models.CharField(max_length=100)
     instructor = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_created=True)
+    created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

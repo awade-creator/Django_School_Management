@@ -1,10 +1,8 @@
-from django.shortcuts import render, redirect
-from django.template.context_processors import request
+import datetime
+
+from django.shortcuts import render
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
-import student
-from member.models import Member
-from . import forms
 from .forms import ExamCreateForm
 from .models import Student, Exam
 
@@ -17,16 +15,27 @@ def exam_create(request, pk_exam):
         form = ExamCreateForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.author = {'exam_author': request.user}
-            instance.exam_id = pk_exam
-
+            instance.exam_author = request.user
+            instance.student_id = pk_exam
+            test_results = (instance.form_cadence,
+                            instance.contact,
+                            instance.one_step,
+                            instance.sparring,
+                            instance.ecas,
+                            instance.boards)
+            if test_results == True:
+                results = 'pass'
+                instance.results = results
+            else:
+                results = 'fail'
+                instance.results = results
             instance.save()
-            return HttpResponseRedirect('/student/student_dashboard?submitted=True')
+            return HttpResponseRedirect('/student/student_dashboard')
         else:
             form = ExamCreateForm
-            if 'submitted' in request.GET:
-                submitted = True
-    return render(request, 'student/exam_create.html', {'form': form, 'student': student})
+    return render(request, 'student/exam_create.html', {'form'       : form,
+                                                        'student'    : student,
+                                                        'exam_author': request.user})
 
 
 def home(request):
@@ -42,8 +51,17 @@ def student_dashboard(request):
     return render(request, "student/student_dashboard.html", {'students_all': students_all})
 
 
+class exam_list(ListView):
+    queryset = Exam.objects.filter()
+    template_name = "student/exam_list.html"
+
+
+"""
 def exam_report_view(request):
     exam_results = Exam.objects.all()
     student_exam = Student.objects.all()
+    print(student_exam)
+    print(exam_results)
     return render(request, "student/exam_report_view.html",
                   {'exam_results': exam_results, 'student_exam': student_exam})
+"""

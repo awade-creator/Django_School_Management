@@ -89,7 +89,6 @@ SC_CHOICES = [
 
 # Create your models here.
 class Student(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     age = models.CharField(max_length=3)
@@ -98,6 +97,7 @@ class Student(models.Model):
     xp_program = models.CharField(max_length=100, choices=XP_CHOICES)
     sc_program = models.CharField(max_length=100, choices=SC_CHOICES)
     instructor = models.BooleanField()
+    created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.last_name + ', ' + self.first_name
