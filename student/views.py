@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
@@ -8,6 +9,7 @@ from .models import Student, Exam
 
 
 # Create your views here.
+@login_required
 def exam_create(request, pk_exam):
     student = Student.objects.get(pk=pk_exam)
     form = ExamCreateForm(request.POST)
@@ -26,6 +28,14 @@ def exam_create(request, pk_exam):
             if test_results == True:
                 results = 'pass'
                 instance.results = results
+                test = datetime.date.day
+                # split the date at '-' place into list
+                # ex: June 08, 2022 - 01:15:59
+                print(datetime.date.day)
+
+                if Student.id == Exam.exam_id and datetime.date.day() == datetime.date.day():
+                    return HttpResponseRedirect('/student/student_dashboard')
+
             else:
                 results = 'fail'
                 instance.results = results
@@ -42,10 +52,12 @@ def home(request):
     return render(request=request, template_name="student/home.html")
 
 
+@login_required
 def student_profile(request):
     return render(request=request, template_name="student/student_profile.html")
 
 
+@login_required
 def student_dashboard(request):
     students_all = Student.objects.all()
     return render(request, "student/student_dashboard.html", {'students_all': students_all})
@@ -53,7 +65,7 @@ def student_dashboard(request):
 
 class exam_list(ListView):
     queryset = Exam.objects.filter()
-    template_name = "student/exam_list.html"
+    # template_name = "student/exam_list.html"
 
 
 """
