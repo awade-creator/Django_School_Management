@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kc-hj!%zb#z-g4f2iexz3)@3nzxj7kc2#a4di*av(02$_91hrj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
 INTERNAL_IPS = []
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'jazzmin',
     'phone_field',
     "debug_toolbar",
+    'whitenoise.runserver_nostatic',
 
     # Django Core Applications
     'django.contrib.admin',
@@ -90,6 +92,8 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# Dev
+"""
 DATABASES = {
     'default': {
         "ENGINE"  : "django.db.backends.postgresql",
@@ -97,6 +101,20 @@ DATABASES = {
         "USER"    : "wade",
         "PASSWORD": "alexwade",
         "HOST"    : "localhost",  # set in docker-compose.yml
+        "PORT"    : 5432,  # default postgres port
+    }
+}
+"""
+
+# Production
+DATABASES = {
+    'default': {
+        "ENGINE"  : "ec2-34-225-159-178.compute-1.amazonaws.com",
+        "NAME"    : "dcruluk6ud1lqs",
+        "USER"    : "gktwnyxtkgrfgr",
+        "PASSWORD": "e46734a4b464119ee029cf799e068835a269761e61778249260a306fff1bec00",
+        "HOST"    : "postgres://gktwnyxtkgrfgr:e46734a4b464119ee029cf799e068835a269761e61778249260a306fff1bec00@ec2-34-225-159-178.compute-1.amazonaws.com:5432/dcruluk6ud1lqs",
+        # set in docker-compose.yml
         "PORT"    : 5432,  # default postgres port
     }
 }
