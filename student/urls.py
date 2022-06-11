@@ -11,6 +11,6 @@ urlpatterns = [
     path("student_profile/", student_profile, name="student_profile"),
     path("student_dashboard/", student_dashboard, name="student_dashboard"),
     path('exam_create/<str:pk_exam>', exam_create, name='exam_create'),
-    # path("exam_list", exam_list.as_view(), name='exam_list'),
-    path("exam_list/", login_required(TemplateView.as_view(template_name="student/exam_list.html"))),
+    # path("exam_list", login_required(TemplateView.as_view)),
+    path("exam_list", exam_list.as_view(), name='exam_list'),
 ]

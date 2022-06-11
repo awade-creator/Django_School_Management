@@ -1,8 +1,8 @@
 import datetime
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.http import HttpResponseRedirect
 from .forms import ExamCreateForm
 from .models import Student, Exam
@@ -63,9 +63,17 @@ def student_dashboard(request):
     return render(request, "student/student_dashboard.html", {'students_all': students_all})
 
 
+"""
 class exam_list(ListView):
     queryset = Exam.objects.filter()
-    # template_name = "student/exam_list.html"
+    template_name = "student/exam_list.html"
+"""
+
+
+class exam_list(LoginRequiredMixin, TemplateView):
+    queryset = Exam.objects.filter()
+    template_name = "student/exam_list.html"
+    redirect_field_name = '/login'
 
 
 """
