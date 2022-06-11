@@ -30,7 +30,7 @@ DEBUG = False
 
 INTERNAL_IPS = []
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'mighty-sea-29600.herokuapp.com']
 
 # Application definition
 
