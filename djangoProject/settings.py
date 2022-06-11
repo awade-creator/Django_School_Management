@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kc-hj!%zb#z-g4f2iexz3)@3nzxj7kc2#a4di*av(02$_91hrj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 INTERNAL_IPS = []
 
-ALLOWED_HOSTS = ['127.0.0.1', 'mighty-sea-29600.herokuapp.com']
+ALLOWED_HOSTS = ['']
 
 # Application definition
 
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # Dev
-"""
+
 DATABASES = {
     'default': {
         "ENGINE"  : "django.db.backends.postgresql",
@@ -118,7 +118,7 @@ DATABASES = {
         "PORT"    : 5432,  # default postgres port
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -161,6 +161,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 MEDIA_URL = '/media/'
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
