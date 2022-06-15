@@ -33,6 +33,7 @@ RANK_CHOICES = [
     ('CUB_BROWN', 'Cub_Brown'),
     ('CUB_RED', 'Cub_Red'),
     ('CUB_BLACK', 'Cub_Black'),
+    ('CUB_GRADUATE', 'Cub_Graduate'),
     ('WHITE', 'White'),
     ('YELLOW', 'Yellow'),
     ('GREEN_1', 'Green_1'),
@@ -48,18 +49,25 @@ RANK_CHOICES = [
     ('RED_2', 'Red_2'),
     ('RED_3', 'Red_3'),
     ('PROBATIONARY_BLACK', 'Probationary_Black'),
-    ('BLACK_1ST_1', 'Black_1ST_1'),
-    ('BLACK_1ST_2', 'Black_1ST_2'),
-    ('BLACK_1ST_3', 'Black_1ST_3'),
-    ('BLACK_2ND_1', 'Black_2ND_1'),
-    ('BLACK_2ND_2', 'Black_2ND_2'),
-    ('BLACK_2ND_3', 'Black_2ND_3'),
-    ('BLACK_3RD_1', 'Black_3RD_1'),
-    ('BLACK_3RD_2', 'Black_3RD_2'),
-    ('BLACK_3RD_3', 'Black_3RD_3'),
-    ('BLACK_4TH_1', 'Black_4TH_1'),
-    ('BLACK_4TH_2', 'Black_4TH_2'),
-    ('BLACK_4TH_3', 'Black_4TH_3'),
+    ('PROBATIONARY_BLACK_1ST', 'Probationary_Black_1ST'),
+    ('PROBATIONARY_BLACK_2ND', 'Probationary_Black_2ND'),
+    ('PROBATIONARY_BLACK_3RD', 'Probationary_Black_3RD'),
+    ('PROBATIONARY_BLACK_4TH', 'Probationary_Black_4TH'),
+    ('BLACK_1ST_L1', 'Black_1ST_L1'),
+    ('BLACK_1ST_L2', 'Black_1ST_L2'),
+    ('BLACK_1ST_L3', 'Black_1ST_L3'),
+    ('BLACK_1ST_L4', 'Black_1ST_L4'),
+    ('BLACK_2ND_L1', 'Black_2ND_L1'),
+    ('BLACK_2ND_L2', 'Black_2ND_L2'),
+    ('BLACK_2ND_L3', 'Black_2ND_L3'),
+    ('BLACK_2ND_L4', 'Black_2ND_L4'),
+    ('BLACK_3RD_L1', 'Black_3RD_L1'),
+    ('BLACK_3RD_L2', 'Black_3RD_L2'),
+    ('BLACK_3RD_L3', 'Black_3RD_L3'),
+    ('BLACK_3RD_L4', 'Black_3RD_L4'),
+    ('BLACK_4TH_L1', 'Black_4TH_L1'),
+    ('BLACK_4TH_L2', 'Black_4TH_L2'),
+    ('BLACK_4TH_L3', 'Black_4TH_L3'),
     ('SR_1ST_DEGREE', 'Sr_1st_Degree'),
     ('SR_2ND_DEGREE', 'Sr_2nd_Degree'),
     ('SR_3RD_DEGREE', 'Sr_3rd_Degree'),
@@ -86,6 +94,13 @@ SC_CHOICES = [
     ('YELLOW', 'Yellow')
 ]
 
+INSRTUCTOR_CHOICES = [
+    ('BLANK', 'N/A'),
+    ('LEADERSHIP', 'Leadership'),
+    ('ASSISTANT', 'Assistant'),
+    ('HONORS', 'Honors'),
+]
+
 
 # Create your models here.
 class Student(models.Model):
@@ -97,6 +112,7 @@ class Student(models.Model):
     xp_program = models.CharField(max_length=100, choices=XP_CHOICES)
     sc_program = models.CharField(max_length=100, choices=SC_CHOICES)
     instructor = models.BooleanField()
+    instructor_level = models.CharField(max_length=100, choices=INSRTUCTOR_CHOICES, default='N/A')
     created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
