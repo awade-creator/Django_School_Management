@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # Dev
-
+"""
 DATABASES = {
     'default': {
         "ENGINE"  : "django.db.backends.postgresql",
@@ -109,16 +109,16 @@ DATABASES = {
 # Production
 DATABASES = {
     'default': {
-        "ENGINE"  : "ec2-34-225-159-178.compute-1.amazonaws.com",
-        "NAME"    : "dcruluk6ud1lqs",
-        "USER"    : "gktwnyxtkgrfgr",
-        "PASSWORD": "e46734a4b464119ee029cf799e068835a269761e61778249260a306fff1bec00",
-        "HOST"    : "postgres://gktwnyxtkgrfgr:e46734a4b464119ee029cf799e068835a269761e61778249260a306fff1bec00@ec2-34-225-159-178.compute-1.amazonaws.com:5432/dcruluk6ud1lqs",
+        "ENGINE"  : "ec2-52-3-60-53.compute-1.amazonaws.com",
+        "NAME"    : "deek1ihrg7e1ct",
+        "USER"    : "vsfmlprzpjhfyg",
+        "PASSWORD": "90bb9a56f237b884db59ea20a39a32c06426b659ce18a99497214dc3bca81c3a",
+        "HOST"    : "postgres://vsfmlprzpjhfyg:90bb9a56f237b884db59ea20a39a32c06426b659ce18a99497214dc3bca81c3a@ec2-52-3-60-53.compute-1.amazonaws.com:5432/deek1ihrg7e1ct",
         # set in docker-compose.yml
         "PORT"    : 5432,  # default postgres port
     }
 }
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -178,8 +178,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
-
-django_heroku.settings(locals())
 
 JAZZMIN_SETTINGS = {
     "site_title"                 : "Flow Engage",
