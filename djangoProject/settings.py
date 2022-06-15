@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'jazzmin',
     'phone_field',
     "debug_toolbar",
-    'whitenoise.runserver_nostatic',
 
     # Django Core Applications
     'django.contrib.admin',
