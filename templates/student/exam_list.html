@@ -1,35 +1,65 @@
 {% extends 'main/base.html' %}
 
 
-{% load crispy_forms_tags %}
 {% block content %}
 
-    <!-- Iterate over object_list -->
-    {% for object in object_list %}
-        </br>
-        <table>
-            <tr>
-                <td>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ object.student.first_name }} {{ object.student.last_name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ object.exam_title }}</h6>
+    <!--Main layout-->
+    <main class="my-5" style="padding-top: 150px" xmlns="http://www.w3.org/1999/html">
+        <div class="btn  btn-primary  py-4 border-3 ">
+            <h2><strong>Exam Results</strong></h2>
+        </div>
+        <div class="container" style="padding-left: 120px">
+            <!--Section: Content-->
+            {% for object in object_list %}
+                <section>
 
-                            <div>
-
-                                <label for="notes">Notes: </label>
-                                <p class="card-text">{{ object.notes }}</p>
-                            </div>
-                            <p class="card-text">{{ object.exam_author }}</p>
-                            <a href="#" class="card-link">Another link</a>
+                    <!-- Post -->
+                    <div class="row" style="background-color:#FAF9F6;">
+                        <div class="col-md-10 mb-4">
+                            <h5 class="text-center text-md-start">
+                                <strong>
+                                    {{ object.student.first_name }} {{ object.student.last_name }}
+                                </strong>
+                            </h5>
+                            <p>
+                                Examination Results: {{ object.results|upper }}
+                            </p>
+                            <!--
+                            <button type="button" class="btn btn-primary">Details</button>
+                            -->
                         </div>
                     </div>
-                </td>
-            </tr>
-        </table>
-        <!-- If object_list is empty  -->
-        {% empty %}
-        <li>No objects yet.</li>
-    {% endfor %}
 
-{% endblock %}
+                    <!-- Post -->
+
+                </section>
+                <br>
+                <br>
+                {% empty %}
+                <center><strong>Results Found</strong></center>
+            {% endfor %}
+            <!-- If object_list is empty -->
+
+            <!--Section: Content-->
+
+            <!-- Pagination -->
+            <nav class="my-4" aria-label="...">
+                <ul class="pagination pagination-circle justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+    <!--Main layout-->
+
+{% endblock content %}

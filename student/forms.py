@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Exam
+from .models import Exam, Student
 
 EXAM_TIER = [
     ('', ''),
@@ -22,3 +22,16 @@ class ExamCreateForm(forms.ModelForm):
         fields = (
             'exam_title', 'form_cadence', 'contact', 'one_step', 'sparring',
             'ecas', 'boards', 'notes')
+
+
+class StudentExamCreateForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('first_name',
+                  'last_name',
+                  'age',
+                  'rank',
+                  'tkd_program',
+                  'xp_program',
+                  'sc_program',
+                  'instructor')

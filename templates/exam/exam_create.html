@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div style="padding-top: 120px">
+        <div class="btn  btn-primary  py-4 border-3 ">
+            <h2><strong>STUDENT EXAMINE {{ student.first_name|upper }} {{ student.last_name|upper }}</strong></h2>
+        </div>
+        <!--Exam form-->
+        <div class="container center">
+            <strong></strong>
+            </br>
+            <form method="POST">
+                {% csrf_token %}
+
+                <div table-responsive>
+                    <table style="width:100%" class="center-block">
+                        <tr>
+                            <th colspan="3" style="padding-top: 15px">
+                                Test criteria
+                                {{ form.exam_title }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    {{ form.form_cadence }}
+                                    <label for="Form_cadence">Form</label>
+                                </div>
+                                <div>
+                                    {{ form.contact }}
+                                    <label for="Contact">Contacts</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{ form.one_step }}
+                                    <label for="One_step">One Steps</label>
+                                </div>
+                                <div>
+                                    {{ form.sparring }}
+                                    <label for="Spar">Sparring</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{ form.ecas }}
+                                    <label for="ECAS">ECAS</label>
+                                </div>
+                                <div>
+                                    {{ form.boards }}
+                                    <label for="Boards">Boards</label>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <th colspan="3">
+                            <textarea id="w3review" name="notes" rows="4" cols="90"></textarea>
+                        </th>
+                    </table>
+
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        </br>
+        <div class="btn w-full btn-warning text-truncate  py-1 border-3 position-relative"
+             style="z-index: 1000;">
+            <h3><strong>EXAM AUTHOR - {{ exam_author }}</strong></h3>
+        </div>
+    </div>
+
+{% endblock %}

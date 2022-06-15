@@ -1,0 +1,177 @@
+{% extends 'main/base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div style="padding-top: 120px">
+        <div class="btn  btn-primary  py-4 border-3 ">
+            <h2><strong>STUDENT EXAMINE {{ student.first_name|upper }} {{ student.last_name|upper }}</strong></h2>
+        </div>
+        <!--Exam form-->
+        <div class="container center">
+            <strong></strong>
+            </br>
+            <form method="POST">
+                {% csrf_token %}
+
+                <div table-responsive>
+                    <table style="width:100%" class="center-block">
+                        <tr>
+                            <th colspan="3" style="padding-top: 15px">
+                                Test criteria
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="Form_cadence" name="stat" value="Form_cadence">
+                                    <label for="Form_cadence">Form cadence</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="Contact" name="stat" value="Contact">
+                                    <label for="Contact">Contact</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="One_step" name="stat" value="One_step">
+                                    <label for="One_step">One step</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="Spar" name="stat" value="Spar">
+                                    <label for="Spar">Sparring</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="ECAS" name="stat" value="ECAS">
+                                    <label for="ECAS">ECAS</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="Boards" name="stat" value="Boards">
+                                    <label for="Boards">Boards</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3" style="padding-top: 15px">
+                                Select multiple quick notes
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="timing" name="pl" value="timing">
+                                    <label for="timing">hand and foot timing off</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="long_stance" name="pl" value="long_stance">
+                                    <label for="long_stance">stances too long</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="short_stance" name="pl" value="short_stance">
+                                    <label for="short_stance">stances too short</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="chamber_hand" name="pl" value="chamber_hand">
+                                    <label for="chamber_hand">chambering issues on hand techs</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="chamber_foot" name="pl" value="chamber_foot">
+                                    <label for="chamber_foot">chambering issues on foot techs</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="down" name="pl" value="down">
+                                    <label for="down">hands down</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="reaction" name="pl" value="reaction">
+                                    <label for="reaction">reaction timing is off</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="combinations" name="pl" value="combinations">
+                                    <label for="combinations">lack of combinations</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="kicks" name="pl" value="kicks">
+                                    <label for="kicks">lack of spin kicks</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="double_kicks" name="pl" value="double_kicks">
+                                    <label for="double_kicks">lack of double kicks</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="retract" name="pl" value="retract">
+                                    <label for="retract">did not retract leg</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="sequence" name="pl" value="sequence">
+                                    <label for="sequence">form out of sequence</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="performed" name="pl" value="performed">
+                                    <label for="performed">incorrect tech performed</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="balance" name="pl" value="balance">
+                                    <label for="balance">lack of balance</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="pivot" name="pl" value="pivot">
+                                    <label for="pivot">did not pivot </label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="low_kicks" name="pl" value="low_kicks">
+                                    <label for="low_kicks">low kicks</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="control" name="pl" value="control">
+                                    <label for="control">lack of control</label>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <th colspan="3">
+
+                            <textarea id="w3review" name="notes" rows="4" cols="90"></textarea>
+
+                        </th>
+                    </table>
+
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div>
+                    <a href="#" onclick="getValue(); return false;">Get Value</a>
+
+                </div>
+            </form>
+        </div>
+        </br>
+        <div class="btn w-full btn-warning text-truncate  py-1 border-3 position-relative"
+             style="z-index: 1000;">
+            <h3><strong>EXAM AUTHOR - {{ exam_author }}</strong></h3>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function getValue() {
+            var pl = document.getElementById('pl');
+            var str = '';
+
+            for (var i = 0; i < 16; i++) {
+
+                if (pl[i].checked === true) {
+                    str += pl[i].value + "";
+                }
+            }
+        }
+
+    </script>
+{% endblock %}

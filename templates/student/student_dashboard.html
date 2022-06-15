@@ -6,86 +6,78 @@
     {% load crispy_forms_tags %}
 
     <!-- Banner -->
-    <br>
-    <div class="btn w-full btn-primary text-truncate py-4 border-3 position-relative"
-         style="z-index: 1000;">
-        <h2><strong>STUDENT DASHBOARD LIST</strong></h2>
-    </div>
-    <div class="p-10 bg-surface-secondary">
-        <div class="container">
-            <div class="card">
-                <div class="card-header">
-                    <h6>......</h6>
+    <div style="padding-top: 120px">
+        <div class="btn  btn-primary  py-4 border-3 ">
+            <h2><strong>STUDENT DASHBOARD LIST</strong></h2>
+        </div>
+        <div class="p-10 bg-surface-secondary">
 
-                </div>
-                <div class="table-responsive">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="table-responsive">
 
-                    <table class="table table-hover table-nowrap">
-                        <thead class="table-light">
-                        <tr>
-                            <th scope="col"><strong>Name</strong></th>
-                            <th scope="col"><strong>Age</strong></th>
-                            <th scope="col"><strong>Rank</strong></th>
-                            <th scope="col"><strong>Level</strong></th>
-                            <th scope="col"><strong>Instructor</strong></th>
-                            <th scope="col"></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% block student %}
-                            {% for student in students_all %}
-                                <tr>
-                                    <td data-label="Name">
-                                        <img alt="..."
-                                             src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                                             class="avatar avatar-sm rounded-circle me-2">
-                                        <a class="text-heading font-semibold" href="#">
-                                            {{ student.first_name }} {{ student.last_name }}
-                                        </a>
-                                    </td>
+                        <table class="table table-hover table-nowrap">
+                            <thead class="table-light">
+                            <tr>
+                                <th scope="col"><strong>Name</strong></th>
+                                <th scope="col"><strong>Age</strong></th>
+                                <th scope="col"><strong>Rank</strong></th>
+                                <th scope="col"><strong>Level</strong></th>
+                                <th scope="col"><strong>Instructor</strong></th>
+                                <th scope="col"></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% block student %}
+                                {% for student in students_all %}
+                                    <tr>
+                                        <td data-label="Name">
+                                            <img alt="..."
+                                                 src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                                                 class="avatar avatar-sm rounded-circle me-2">
+                                            <a class="text-heading font-semibold" href="#">
+                                                {{ student.first_name }} {{ student.last_name }}
+                                            </a>
+                                        </td>
 
-                                    <td data-label="Age">
-                                        <span>{{ student.age }}</span>
-                                    </td>
-                                    <td data-label="Rank">
-                                        <a class="text-current"
-                                           href="">{{ student.rank }}</a>
-                                    </td>
-                                    <td data-label="Level">
-                                        <a class="text-current" href="">{{ student.tkd_program }}</a>
-                                    </td>
-                                    <td data-label="Instructor">
-                                        <button type="button" class="btn btn-outline-info btn-sm">
+                                        <td data-label="Age">
+                                            <span>{{ student.age }}</span>
+                                        </td>
+                                        <td data-label="Rank">
+                                            <a class="text-current"
+                                               href="">{{ student.rank }}</a>
+                                        </td>
+                                        <td data-label="Level">
+                                            <a class="text-current" href="">{{ student.tkd_program }}</a>
+                                        </td>
+                                        <td data-label="Instructor">
+                                            <button type="button" class="btn btn-outline-info btn-sm">
                                             <span
                                                     class="badge text-danger">{{ student.instructor }}</span>
-                                        </button>
-                                    </td>
-                                    <td data-label="Actions">
-                                        <div class="dropdown-header">
-                                            <button class="dropdown" type="button"
-                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false"
-                                                    aria-expanded="false">
-                                                <a class="text-current" href="#">Actions</a>
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item"
-                                                   href="{% url 'student:exam_create' student.id %}">Exams</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Item 2</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Item 3</a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                        <td data-label="Actions">
+                                            </button>
+                                            <a href="{% url 'student:exam_create' student.id %}">
+                                                <div class="btn-group btn-group-vertical">
+                                                    <button type="button" class="btn btn-primary">Exams
+                                                    </button>
+                                                </div>
+                                            </a>
 
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                                        </td>
 
-                        {% endblock %}
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            {% endblock %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

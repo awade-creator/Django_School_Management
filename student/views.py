@@ -43,9 +43,9 @@ def exam_create(request, pk_exam):
             return HttpResponseRedirect('/student/student_dashboard')
         else:
             form = ExamCreateForm
-    return render(request, 'student/exam_create.html', {'form'       : form,
-                                                        'student'    : student,
-                                                        'exam_author': request.user})
+    return render(request, 'exam/exam_create.html', {'form'       : form,
+                                                     'student'    : student,
+                                                     'exam_author': request.user})
 
 
 def home(request):
@@ -63,25 +63,10 @@ def student_dashboard(request):
     return render(request, "student/student_dashboard.html", {'students_all': students_all})
 
 
-"""
-class exam_list(ListView):
-    queryset = Exam.objects.filter()
-    template_name = "student/exam_list.html"
-"""
+class exam_list(LoginRequiredMixin, ListView):
+    model = Exam
 
 
-class exam_list(LoginRequiredMixin, TemplateView):
+class StudentCreteView(LoginRequiredMixin, TemplateView):
     queryset = Exam.objects.filter()
-    template_name = "student/exam_list.html"
     redirect_field_name = '/login'
-
-
-"""
-def exam_report_view(request):
-    exam_results = Exam.objects.all()
-    student_exam = Student.objects.all()
-    print(student_exam)
-    print(exam_results)
-    return render(request, "student/exam_report_view.html",
-                  {'exam_results': exam_results, 'student_exam': student_exam})
-"""
