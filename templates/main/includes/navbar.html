@@ -1,50 +1,53 @@
 <!--Navbar 1-->
 {% load static %}
-
-<!--Navbar That Needs To Be Integrated-->
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img src="{% static "img/logo.png" %}" width="35" height="35" alt="logo">
-    <a class="navbar-brand" href="{% url 'main:home' %}">Flow Engage</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="{% url 'student:home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student:student_dashboard' %}">Student Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'student:exam_list' %}">Exam Results</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'member:logout' %}">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">{{ user.username|title }}</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'member:login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'member:register_user' %}">Register</a>
-                </li>
-            {% endif %}
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top headroom">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="{% url 'main:home' %}"><img src="{% static 'images/logo.png' %}"
+                                                                      alt="Progressus HTML5 template"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="{% url 'student:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student:student_dashboard' %}">Student Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student:exam_list' %}">Exam Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'member:logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">{{ user.username|title }}</a>
+                    </li>
+                {% else %}
+                    <li class="active"><a href="{% url 'main:home' %}">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sidebar-left.html">Left Sidebar</a></li>
+                            <li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'member:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'member:register_user' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
-</nav>
+</div>
+<!-- /.navbar -->

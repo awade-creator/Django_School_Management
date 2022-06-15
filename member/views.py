@@ -1,7 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from django.template import RequestContext
 from django.views.generic import ListView
 
 from student.models import Student
@@ -23,3 +25,18 @@ def register_user(request):
     else:
         form = UserCreationForm()
     return render(request, 'member/authentication/register_user.html', {'form': form})
+
+
+def login_user(request):
+    logout(request)
+    username = password = ''
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/main/')
+    return render('login.html', context_instance=RequestContext(request))
