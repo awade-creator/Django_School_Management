@@ -278,3 +278,6 @@ JAZZMIN_UI_TWEAKS = {
     },
     "actions_sticky_top"       : False
 }
+
+# django heroku settings
+django_heroku.settings(locals())
