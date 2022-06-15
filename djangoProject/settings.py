@@ -30,7 +30,7 @@ DEBUG = True
 
 INTERNAL_IPS = []
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -280,4 +280,4 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 # django heroku settings
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
