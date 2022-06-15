@@ -113,7 +113,7 @@ class Student(models.Model):
     sc_program = models.CharField(max_length=100, choices=SC_CHOICES)
     instructor = models.BooleanField()
     instructor_level = models.CharField(max_length=100, choices=INSRTUCTOR_CHOICES, default='N/A')
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.last_name + ', ' + self.first_name
