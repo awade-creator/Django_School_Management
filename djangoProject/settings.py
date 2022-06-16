@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # Third-Party Applications
     "crispy_forms",
     'jazzmin',
-    "debug_toolbar",
     'whitenoise.runserver_nostatic',
 
     # Django Core Applications
