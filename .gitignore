@@ -1,3 +1,7 @@
 /student/migrations/0004_alter_exam_exam_title.py
 /student/migrations/0005_remove_exam_rank_alter_exam_exam_title.py
 /student/migrations/0006_rename_exam_exam_student.py
+.idea
+.idea/djangoProject.iml
+*.iml
+*.pyc
